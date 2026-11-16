@@ -15,6 +15,7 @@ No setup needed. Each badge opens the file in a free online Python editor and ru
 | [`Cart-Pole.py`](./Cart-Pole.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Cart-Pole.py) |
 | [`Colab-F-MINIST.py`](./Colab-F-MINIST.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Colab-F-MINIST.py) |
 | [`ComparisonTest.py`](./ComparisonTest.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/ComparisonTest.py) |
+| [`Comparisonw-GFNN.py`](./Comparisonw-GFNN.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Comparisonw-GFNN.py) |
 | [`ComprehensiveComparison.py`](./ComprehensiveComparison.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/ComprehensiveComparison.py) |
 | [`Continuous-Stirred-Tank-Reactor.py`](./Continuous-Stirred-Tank-Reactor.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Continuous-Stirred-Tank-Reactor.py) |
 | [`Digits-dataset.py`](./Digits-dataset.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Digits-dataset.py) |
@@ -29,6 +30,11 @@ No setup needed. Each badge opens the file in a free online Python editor and ru
 | [`Wine.py`](./Wine.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Wine.py) |
 | [`main.py`](./main.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/main.py) |
 | [`mainGFNN.py`](./mainGFNN.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/mainGFNN.py) |
+| [`untitled1.py`](./untitled1.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/untitled1.py) |
+| [`untitled3.py`](./untitled3.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/untitled3.py) |
+| [`untitled4-2.py`](./untitled4-2.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/untitled4-2.py) |
+| [`untitled4.py`](./untitled4.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/untitled4.py) |
+| [`untitled5.py`](./untitled5.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/untitled5.py) |
 
 Made with [pythoncompiler.io](https://pythoncompiler.io/?utm_source=github&utm_medium=practice-repo) - the free online Python compiler.
 <!-- /pythoncompiler:files -->
