@@ -1,444 +1,241 @@
-import warnings
-warnings.filterwarnings("ignore")
 
 import numpy as np
+from dataclasses import dataclass
+from typing import Dict, List, Tuple, Optional
 
-from sklearn.datasets import load_breast_cancer
 
-from sklearn.model_selection import train_test_split
+@dataclass
+class DivergenceResult:
+    """Results of Synaptic Divergence evaluation."""
 
-from sklearn.preprocessing import StandardScaler
+    neuron_divergence: np.ndarray
+    mean_activation: np.ndarray
+    region_divergence: Dict[str, float]
+    selected_spot: Optional[str]
+    maximum_divergence: float
+    growth_required: bool
 
-from sklearn.neural_network import MLPClassifier
 
-from sklearn.metrics import (
-    accuracy_score,
-    precision_score,
-    recall_score,
-    f1_score
-)
+def compute_synaptic_divergence(
+    activations: np.ndarray,
+    threshold: float,
+    spots: Optional[Dict[str, List[int]]] = None,
+) -> DivergenceResult:
+    """
+    Compute the Synaptic Divergence metric.
 
-# ==========================================================
-# SYNAPTIC DIVERGENCE
-# ==========================================================
+    Parameters
+    ----------
+    activations : np.ndarray
+        Hidden-layer activation matrix with shape (n_samples, n_neurons).
+        Each row corresponds to one training sample.
+        Each column corresponds to one hidden neuron.
 
-def compute_synaptic_divergence(model, X):
+    threshold : float
+        User-defined divergence threshold.
 
-    hidden_input = (
-        np.dot(X, model.coefs_[0])
-        + model.intercepts_[0]
-    )
+    spots : dict, optional
+        Dictionary defining admissible Topological Spots.
+        Example:
+        {
+            "spot_1": [0, 1],
+            "spot_2": [2, 3],
+            "spot_3": [4, 5]
+        }
 
-    hidden_output = np.tanh(hidden_input)
+        If omitted, each neuron is treated as an individual spot.
 
-    mean_activation = np.mean(
-        hidden_output,
+    Returns
+    -------
+    DivergenceResult
+        Neuron-level divergence, regional divergence,
+        selected Topological Spot, and growth decision.
+    """
+
+    # --------------------------------------------------
+    # 1. Input validation
+    # --------------------------------------------------
+
+    A = np.asarray(activations, dtype=np.float64)
+
+    if A.ndim != 2:
+        raise ValueError(
+            "activations must be a 2D matrix "
+            "(n_samples, n_neurons)."
+        )
+
+    n_samples, n_neurons = A.shape
+
+    if n_samples == 0 or n_neurons == 0:
+        raise ValueError("Activation matrix cannot be empty.")
+
+    if not np.all(np.isfinite(A)):
+        raise ValueError(
+            "Activation matrix contains NaN or infinite values."
+        )
+
+    if not np.isfinite(threshold) or threshold < 0:
+        raise ValueError(
+            "threshold must be a finite non-negative number."
+        )
+
+    # --------------------------------------------------
+    # 2. Empirical mean activation of each neuron
+    # --------------------------------------------------
+
+    mean_activation = np.mean(A, axis=0)
+
+    # --------------------------------------------------
+    # 3. Neuron-level Synaptic Divergence
+    #
+    # D_j = (1/N) * sum_i |a_ij - mean_j|
+    # --------------------------------------------------
+
+    neuron_divergence = np.mean(
+        np.abs(A - mean_activation[None, :]),
         axis=0
     )
 
-    divergence = np.mean(
-        np.abs(
-            hidden_output - mean_activation
-        ),
-        axis=0
-    )
+    # --------------------------------------------------
+    # 4. Define admissible Topological Spots
+    # --------------------------------------------------
 
-    return divergence
+    if spots is None:
+        spots = {
+            f"neuron_{j}": [j]
+            for j in range(n_neurons)
+        }
 
+    if not spots:
+        raise ValueError("At least one Topological Spot is required.")
 
-# ==========================================================
-# GFNN
-# ==========================================================
+    # --------------------------------------------------
+    # 5. Regional Synaptic Divergence
+    #
+    # D_R = (1 / |R|) * sum_{j in R} D_j
+    # --------------------------------------------------
 
-class GFNN:
+    region_divergence = {}
 
-    def __init__(
-        self,
-        tau=0.80,
-        initial_neurons=8,
-        max_growth_rounds=10,
-        random_state=0
-    ):
+    for spot_name, neuron_indices in spots.items():
 
-        self.tau = tau
+        indices = np.asarray(neuron_indices, dtype=int)
 
-        self.initial_neurons = initial_neurons
-
-        self.max_growth_rounds = max_growth_rounds
-
-        self.random_state = random_state
-
-        self.best_model = None
-
-        self.final_neurons = None
-
-        self.final_dmax = None
-
-        self.growth_events = 0
-
-        self.history = []
-
-    def fit(
-
-        self,
-
-        X_train,
-        y_train,
-
-        X_val,
-        y_val
-    ):
-
-        neurons = self.initial_neurons
-
-        fib_prev = 1
-        fib_curr = 1
-
-        best_val_acc = -1
-
-        for growth_round in range(
-            self.max_growth_rounds
-        ):
-
-            model = MLPClassifier(
-
-                hidden_layer_sizes=(
-                    neurons,
-                ),
-
-                activation="tanh",
-
-                solver="adam",
-
-                max_iter=1000,
-
-                random_state=self.random_state
+        if indices.ndim != 1 or len(indices) == 0:
+            raise ValueError(
+                f"{spot_name} must contain at least one neuron."
             )
 
-            model.fit(
-                X_train,
-                y_train
+        if np.any(indices < 0) or np.any(indices >= n_neurons):
+            raise ValueError(
+                f"{spot_name} contains an invalid neuron index."
             )
 
-            # ==================================
-            # VALIDATION ACCURACY
-            # ==================================
-
-            val_pred = model.predict(
-                X_val
+        if len(np.unique(indices)) != len(indices):
+            raise ValueError(
+                f"{spot_name} contains duplicate neuron indices."
             )
 
-            val_acc = accuracy_score(
-                y_val,
-                val_pred
-            )
+        region_divergence[spot_name] = float(
+            np.mean(neuron_divergence[indices])
+        )
 
-            # ==================================
-            # SYNAPTIC DIVERGENCE
-            # ==================================
+    # --------------------------------------------------
+    # 6. Select the highest-divergence Topological Spot
+    # --------------------------------------------------
 
-            div_values = (
-                compute_synaptic_divergence(
-                    model,
-                    X_val
-                )
-            )
+    selected_spot = max(
+        region_divergence,
+        key=region_divergence.get
+    )
 
-            d_max = np.max(
-                div_values
-            )
+    maximum_divergence = region_divergence[selected_spot]
 
-            d_mean = np.mean(
-                div_values
-            )
+    # --------------------------------------------------
+    # 7. Growth decision
+    # --------------------------------------------------
 
-            self.history.append({
+    growth_required = maximum_divergence > threshold
 
-                "round":
-                    growth_round + 1,
-
-                "neurons":
-                    neurons,
-
-                "dmax":
-                    d_max,
-
-                "dmean":
-                    d_mean,
-
-                "val_acc":
-                    val_acc
-            })
-
-            if val_acc > best_val_acc:
-
-                best_val_acc = val_acc
-
-                self.best_model = model
-
-                self.final_neurons = neurons
-
-                self.final_dmax = d_max
-
-            # ==================================
-            # THEORETICAL STOPPING RULE
-            # ==================================
-
-            if d_max <= self.tau:
-
-                break
-
-            # ==================================
-            # FIBONACCI GROWTH
-            # ==================================
-
-            if growth_round == 0:
-
-                neurons += 1
-
-            elif growth_round == 1:
-
-                neurons += 1
-
-            else:
-
-                new_neurons = (
-                    fib_prev +
-                    fib_curr
-                )
-
-                fib_prev, fib_curr = (
-                    fib_curr,
-                    new_neurons
-                )
-
-                neurons += new_neurons
-
-            self.growth_events += 1
-
-    def predict(self, X):
-
-        return self.best_model.predict(X)
+    return DivergenceResult(
+        neuron_divergence=neuron_divergence,
+        mean_activation=mean_activation,
+        region_divergence=region_divergence,
+        selected_spot=selected_spot,
+        maximum_divergence=float(maximum_divergence),
+        growth_required=bool(growth_required)
+    )
 
 
-# ==========================================================
-# DATASET
-# ==========================================================
+# ======================================================
+# Example: GFNN Synaptic Divergence Evaluation
+# ======================================================
 
-data = load_breast_cancer()
+if __name__ == "__main__":
 
-X = data.data
+    # Reproducible example
+    rng = np.random.default_rng(42)
 
-y = data.target
+    n_samples = 100
+    n_neurons = 6
 
-# ==========================================================
-# STORAGE
-# ==========================================================
-
-N_RUNS = 30
-
-acc_list = []
-
-prec_list = []
-
-rec_list = []
-
-f1_list = []
-
-growth_events = []
-
-final_neurons = []
-
-# ==========================================================
-# 30 INDEPENDENT RUNS
-# ==========================================================
-
-for seed in range(N_RUNS):
-
-    # ======================================
-    # TRAIN / TEST
-    # ======================================
-
-    X_train_full, X_test, y_train_full, y_test = (
-        train_test_split(
-
-            X,
-            y,
-
-            test_size=0.20,
-
-            stratify=y,
-
-            random_state=seed
+    # Simulated hidden-layer activations
+    activations = np.tanh(
+        rng.normal(
+            loc=0.0,
+            scale=1.0,
+            size=(n_samples, n_neurons)
         )
     )
 
-    # ======================================
-    # TRAIN / VALIDATION
-    # ======================================
+    # Define admissible Topological Spots
+    spots = {
+        "spot_1": [0, 1],
+        "spot_2": [2, 3],
+        "spot_3": [4, 5]
+    }
 
-    X_train, X_val, y_train, y_val = (
-        train_test_split(
+    # Divergence threshold
+    threshold = 0.30
 
-            X_train_full,
-            y_train_full,
-
-            test_size=0.20,
-
-            stratify=y_train_full,
-
-            random_state=seed
-        )
+    # Evaluate divergence
+    result = compute_synaptic_divergence(
+        activations=activations,
+        threshold=threshold,
+        spots=spots
     )
 
-    scaler = StandardScaler()
+    # --------------------------------------------------
+    # Display results
+    # --------------------------------------------------
 
-    X_train = scaler.fit_transform(
-        X_train
-    )
+    print("\nGFNN SYNAPTIC DIVERGENCE ANALYSIS")
+    print("=" * 55)
 
-    X_val = scaler.transform(
-        X_val
-    )
+    print("\nMean activation:")
+    print(np.round(result.mean_activation, 6))
 
-    X_test = scaler.transform(
-        X_test
-    )
+    print("\nNeuron-level Synaptic Divergence:")
 
-    # ======================================
-    # GFNN
-    # ======================================
+    for j, value in enumerate(result.neuron_divergence):
+        print(f"Neuron {j}: {value:.6f}")
 
-    gfnn = GFNN(
+    print("\nRegional Synaptic Divergence:")
 
-        tau=0.80,
+    for name, value in result.region_divergence.items():
+        print(f"{name}: {value:.6f}")
 
-        initial_neurons=8,
+    print("\nSelected Topological Spot:")
+    print(result.selected_spot)
 
-        max_growth_rounds=10,
+    print("\nMaximum Divergence:")
+    print(f"{result.maximum_divergence:.6f}")
 
-        random_state=seed
-    )
+    print("\nGrowth Decision:")
 
-    gfnn.fit(
+    if result.growth_required:
+        print("GROWTH REQUIRED")
+    else:
+        print("NO GROWTH REQUIRED")
 
-        X_train,
-        y_train,
-
-        X_val,
-        y_val
-    )
-
-    pred = gfnn.predict(
-        X_test
-    )
-
-    acc_list.append(
-        accuracy_score(
-            y_test,
-            pred
-        )
-    )
-
-    prec_list.append(
-        precision_score(
-            y_test,
-            pred,
-            average="weighted"
-        )
-    )
-
-    rec_list.append(
-        recall_score(
-            y_test,
-            pred,
-            average="weighted"
-        )
-    )
-
-    f1_list.append(
-        f1_score(
-            y_test,
-            pred,
-            average="weighted"
-        )
-    )
-
-    growth_events.append(
-        gfnn.growth_events
-    )
-
-    final_neurons.append(
-        gfnn.final_neurons
-    )
-
-
-# ==========================================================
-# RESULTS
-# ==========================================================
-
-print("\n")
-print("=" * 60)
-print("GFNN RESULTS")
-print("=" * 60)
-
-print(
-    f"Accuracy Mean = "
-    f"{np.mean(acc_list):.4f}"
-)
-
-print(
-    f"Accuracy Std = "
-    f"{np.std(acc_list):.4f}"
-)
-
-print(
-    f"Precision Mean = "
-    f"{np.mean(prec_list):.4f}"
-)
-
-print(
-    f"Recall Mean = "
-    f"{np.mean(rec_list):.4f}"
-)
-
-print(
-    f"F1 Mean = "
-    f"{np.mean(f1_list):.4f}"
-)
-
-print(
-    f"F1 Std = "
-    f"{np.std(f1_list):.4f}"
-)
-
-print(
-    f"Average Growth Events = "
-    f"{np.mean(growth_events):.2f}"
-)
-
-print(
-    f"Average Final Neurons = "
-    f"{np.mean(final_neurons):.2f}"
-)
-
-print("\nGFNN ACCURACY")
-print(
-    list(
-        np.round(
-            acc_list,
-            6
-        )
-    )
-)
-
-print("\nGFNN F1")
-print(
-    list(
-        np.round(
-            f1_list,
-            6
-        )
-    )
-)
-           
+    print("=" * 55)
