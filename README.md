@@ -26,6 +26,7 @@ No setup needed. Each badge opens the file in a free online Python editor and ru
 | [`Iris.py`](./Iris.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Iris.py) |
 | [`LSTM.py`](./LSTM.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/LSTM.py) |
 | [`MLP-ALL.py`](./MLP-ALL.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/MLP-ALL.py) |
+| [`Random-Forest.py`](./Random-Forest.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Random-Forest.py) |
 | [`TENO-VAN-DER-POL.py`](./TENO-VAN-DER-POL.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/TENO-VAN-DER-POL.py) |
 | [`Van-der-Pol-Oscillator.py`](./Van-der-Pol-Oscillator.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Van-der-Pol-Oscillator.py) |
 | [`WINE-RESULT.py`](./WINE-RESULT.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/WINE-RESULT.py) |
