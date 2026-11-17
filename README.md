@@ -23,6 +23,7 @@ No setup needed. Each badge opens the file in a free online Python editor and ru
 | [`Digits.py`](./Digits.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Digits.py) |
 | [`GFNN.py`](./GFNN.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/GFNN.py) |
 | [`GFNN_Paper.py`](./GFNN_Paper.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/GFNN_Paper.py) |
+| [`GFNN_p.py`](./GFNN_p.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/GFNN_p.py) |
 | [`Gradient-Descent.py`](./Gradient-Descent.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Gradient-Descent.py) |
 | [`Iris-Dataset.py`](./Iris-Dataset.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Iris-Dataset.py) |
 | [`Iris.py`](./Iris.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Iris.py) |
