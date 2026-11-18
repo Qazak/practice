@@ -19,6 +19,7 @@ No setup needed. Each badge opens the file in a free online Python editor and ru
 | [`Comparisonw-GFNN.py`](./Comparisonw-GFNN.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Comparisonw-GFNN.py) |
 | [`ComprehensiveComparison.py`](./ComprehensiveComparison.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/ComprehensiveComparison.py) |
 | [`Continuous-Stirred-Tank-Reactor.py`](./Continuous-Stirred-Tank-Reactor.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Continuous-Stirred-Tank-Reactor.py) |
+| [`DATASETSvComparison.py`](./DATASETSvComparison.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/DATASETSvComparison.py) |
 | [`Digits-dataset.py`](./Digits-dataset.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Digits-dataset.py) |
 | [`Digits.py`](./Digits.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Digits.py) |
 | [`GFNN-ACCURACY.py`](./GFNN-ACCURACY.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/GFNN-ACCURACY.py) |
