@@ -21,6 +21,7 @@ No setup needed. Each badge opens the file in a free online Python editor and ru
 | [`Continuous-Stirred-Tank-Reactor.py`](./Continuous-Stirred-Tank-Reactor.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Continuous-Stirred-Tank-Reactor.py) |
 | [`Digits-dataset.py`](./Digits-dataset.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Digits-dataset.py) |
 | [`Digits.py`](./Digits.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Digits.py) |
+| [`GFNN-ACCURACY.py`](./GFNN-ACCURACY.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/GFNN-ACCURACY.py) |
 | [`GFNN.py`](./GFNN.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/GFNN.py) |
 | [`GFNN_Paper.py`](./GFNN_Paper.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/GFNN_Paper.py) |
 | [`GFNN_p.py`](./GFNN_p.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/GFNN_p.py) |
