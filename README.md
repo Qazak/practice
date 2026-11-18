@@ -28,6 +28,7 @@ No setup needed. Each badge opens the file in a free online Python editor and ru
 | [`Iris-Dataset.py`](./Iris-Dataset.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Iris-Dataset.py) |
 | [`Iris.py`](./Iris.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Iris.py) |
 | [`LSTM.py`](./LSTM.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/LSTM.py) |
+| [`MLP-8-16-32.py`](./MLP-8-16-32.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/MLP-8-16-32.py) |
 | [`MLP-ALL.py`](./MLP-ALL.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/MLP-ALL.py) |
 | [`MNIST.py`](./MNIST.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/MNIST.py) |
 | [`Random-Forest.py`](./Random-Forest.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Random-Forest.py) |
