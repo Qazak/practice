@@ -1,8 +1,6 @@
 import warnings
 warnings.filterwarnings("ignore")
-
 import numpy as np
-
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -15,10 +13,6 @@ from sklearn.metrics import (
     f1_score,
     roc_auc_score
 )
-
-# ==========================================================
-# SETTINGS
-# ==========================================================
 
 N_RUNS = 30
 
