@@ -40,6 +40,7 @@ No setup needed. Each badge opens the file in a free online Python editor and ru
 | [`WINE-RESULT.py`](./WINE-RESULT.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/WINE-RESULT.py) |
 | [`Wine.py`](./Wine.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/Wine.py) |
 | [`XGBoost.py`](./XGBoost.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/XGBoost.py) |
+| [`baseGFNN.py`](./baseGFNN.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/baseGFNN.py) |
 | [`main.py`](./main.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/main.py) |
 | [`mainGFNN.py`](./mainGFNN.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/mainGFNN.py) |
 | [`untitled1.py`](./untitled1.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/untitled1.py) |
