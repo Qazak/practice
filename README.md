@@ -45,6 +45,7 @@ No setup needed. Each badge opens the file in a free online Python editor and ru
 | [`mainGFNN.py`](./mainGFNN.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/mainGFNN.py) |
 | [`untitled.py`](./untitled.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/untitled.py) |
 | [`untitled1.py`](./untitled1.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/untitled1.py) |
+| [`untitled2.py`](./untitled2.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/untitled2.py) |
 | [`untitled3.py`](./untitled3.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/untitled3.py) |
 | [`untitled4-2.py`](./untitled4-2.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/untitled4-2.py) |
 | [`untitled4.py`](./untitled4.py) | [![Run in Python Compiler](https://pythoncompiler.io/badge-run.svg)](https://pythoncompiler.io/?gh=Qazak/python-practice/main/untitled4.py) |
